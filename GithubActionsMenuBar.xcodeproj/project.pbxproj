@@ -14,6 +14,11 @@
 		AA0000000000000000000205 /* WorkflowModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000105 /* WorkflowModels.swift */; };
 		AA0000000000000000000206 /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000106 /* SettingsWindowController.swift */; };
 		AA0000000000000000000207 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA0000000000000000000107 /* UserPreferences.swift */; };
+		BB0000000000000000000001 /* WorkflowModelsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000005 /* WorkflowModelsSpec.swift */; };
+		BB0000000000000000000002 /* GitHubAPIClientSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000006 /* GitHubAPIClientSpec.swift */; };
+		BB0000000000000000000003 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000007 /* MockURLProtocol.swift */; };
+		DD0000000000000000000005 /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = DD0000000000000000000003 /* Quick */; };
+		DD0000000000000000000006 /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = DD0000000000000000000004 /* Nimble */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +31,10 @@
 		AA0000000000000000000107 /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		AA0000000000000000000108 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA000000000000000000006A /* GithubActionsMenuBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubActionsMenuBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB0000000000000000000004 /* GithubActionsMenuBarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GithubActionsMenuBarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB0000000000000000000005 /* WorkflowModelsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowModelsSpec.swift; sourceTree = "<group>"; };
+		BB0000000000000000000006 /* GitHubAPIClientSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubAPIClientSpec.swift; sourceTree = "<group>"; };
+		BB0000000000000000000007 /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +45,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BB000000000000000000000B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD0000000000000000000005 /* Quick in Frameworks */,
+				DD0000000000000000000006 /* Nimble in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -43,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				AA000000000000000000003A /* Sources */,
+				BB0000000000000000000008 /* GithubActionsMenuBarTests */,
 				AA000000000000000000004A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -67,8 +86,19 @@
 			isa = PBXGroup;
 			children = (
 				AA000000000000000000006A /* GithubActionsMenuBar.app */,
+				BB0000000000000000000004 /* GithubActionsMenuBarTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		BB0000000000000000000008 /* GithubActionsMenuBarTests */ = {
+			isa = PBXGroup;
+			children = (
+				BB0000000000000000000005 /* WorkflowModelsSpec.swift */,
+				BB0000000000000000000006 /* GitHubAPIClientSpec.swift */,
+				BB0000000000000000000007 /* MockURLProtocol.swift */,
+			);
+			path = GithubActionsMenuBarTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -91,7 +121,47 @@
 			productReference = AA000000000000000000006A /* GithubActionsMenuBar.app */;
 			productType = "com.apple.product-type.application";
 		};
+		BB0000000000000000000009 /* GithubActionsMenuBarTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB0000000000000000000011 /* Build configuration list for PBXNativeTarget "GithubActionsMenuBarTests" */;
+			buildPhases = (
+				BB000000000000000000000A /* Sources */,
+				BB000000000000000000000B /* Frameworks */,
+				BB000000000000000000000C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BB000000000000000000000E /* PBXTargetDependency */,
+			);
+			name = GithubActionsMenuBarTests;
+			packageProductDependencies = (
+				DD0000000000000000000003 /* Quick */,
+				DD0000000000000000000004 /* Nimble */,
+			);
+			productName = GithubActionsMenuBarTests;
+			productReference = BB0000000000000000000004 /* GithubActionsMenuBarTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
+
+/* Begin PBXContainerItemProxy section */
+		BB000000000000000000000D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA000000000000000000001A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA000000000000000000005A;
+			remoteInfo = GithubActionsMenuBar;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXTargetDependency section */
+		BB000000000000000000000E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA000000000000000000005A /* GithubActionsMenuBar */;
+			targetProxy = BB000000000000000000000D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXProject section */
 		AA000000000000000000001A /* Project object */ = {
@@ -118,14 +188,26 @@
 			productRefGroup = AA000000000000000000004A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
+			packageReferences = (
+				DD0000000000000000000001 /* XCRemoteSwiftPackageReference "Quick" */,
+				DD0000000000000000000002 /* XCRemoteSwiftPackageReference "Nimble" */,
+			);
 			targets = (
 				AA000000000000000000005A /* GithubActionsMenuBar */,
+				BB0000000000000000000009 /* GithubActionsMenuBarTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		AA000000000000000000009A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB000000000000000000000C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -146,6 +228,16 @@
 				AA0000000000000000000205 /* WorkflowModels.swift in Sources */,
 				AA0000000000000000000206 /* SettingsWindowController.swift in Sources */,
 				AA0000000000000000000207 /* UserPreferences.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB000000000000000000000A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB0000000000000000000001 /* WorkflowModelsSpec.swift in Sources */,
+				BB0000000000000000000002 /* GitHubAPIClientSpec.swift in Sources */,
+				BB0000000000000000000003 /* MockURLProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +334,44 @@
 			};
 			name = Release;
 		};
+		BB000000000000000000000F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github-actions-menu-bar.tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GithubActionsMenuBar.app/Contents/MacOS/GithubActionsMenuBar";
+			};
+			name = Debug;
+		};
+		BB0000000000000000000010 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.github-actions-menu-bar.tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GithubActionsMenuBar.app/Contents/MacOS/GithubActionsMenuBar";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -263,7 +393,48 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		BB0000000000000000000011 /* Build configuration list for PBXNativeTarget "GithubActionsMenuBarTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB000000000000000000000F /* Debug */,
+				BB0000000000000000000010 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DD0000000000000000000001 /* XCRemoteSwiftPackageReference "Quick" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Quick";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+		DD0000000000000000000002 /* XCRemoteSwiftPackageReference "Nimble" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Nimble";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 13.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DD0000000000000000000003 /* Quick */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD0000000000000000000001 /* XCRemoteSwiftPackageReference "Quick" */;
+			productName = Quick;
+		};
+		DD0000000000000000000004 /* Nimble */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD0000000000000000000002 /* XCRemoteSwiftPackageReference "Nimble" */;
+			productName = Nimble;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 	};
 	rootObject = AA000000000000000000001A /* Project object */;

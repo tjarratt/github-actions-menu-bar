@@ -5,10 +5,14 @@ class GitHubAPIClient {
     private let baseURL = "https://api.github.com"
     private let session: URLSession
 
-    init() {
-        let config = URLSessionConfiguration.default
-        config.timeoutIntervalForRequest = 30
-        session = URLSession(configuration: config)
+    init(session: URLSession? = nil) {
+        if let session {
+            self.session = session
+        } else {
+            let config = URLSessionConfiguration.default
+            config.timeoutIntervalForRequest = 30
+            self.session = URLSession(configuration: config)
+        }
     }
 
     // MARK: - Public API
@@ -188,7 +192,7 @@ class GitHubAPIClient {
 
     // MARK: - Errors
 
-    enum APIError: LocalizedError {
+    enum APIError: LocalizedError, Equatable {
         case invalidURL
         case noData
         case httpError(Int)
