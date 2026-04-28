@@ -1,5 +1,6 @@
 import Quick
 import Nimble
+import Foundation
 @testable import GithubActionsMenuBar
 
 // MARK: - Encodable stand-ins for stubbing API responses
