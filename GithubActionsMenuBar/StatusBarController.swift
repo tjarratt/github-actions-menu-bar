@@ -74,7 +74,7 @@ class StatusBarController {
 
     private func renderWorkflowMenu(_ statuses: [WorkflowStatus]) {
         let hasFailure = statuses.contains { $0.runStatus == .failure }
-        let allSuccess = !statuses.isEmpty && statuses.allSatisfy { $0.runStatus == .success }
+        let allSuccess = !statuses.isEmpty && statuses.allSatisfy { $0.runStatus == .success || $0.runStatus == .unknown }
 
         statusItem.button?.title = hasFailure ? "🔴" : (allSuccess ? "🟢" : "⚪")
 
