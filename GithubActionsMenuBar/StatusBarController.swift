@@ -2,8 +2,9 @@ import Cocoa
 
 /// Manages the NSStatusItem in the system menu bar.
 ///
-/// - Shows 🟢 when every workflow's latest completed non-cancelled run succeeded.
-/// - Shows 🔴 when at least one workflow's latest completed non-cancelled run failed.
+/// - Shows 🟢 when every workflow's latest completed non-cancelled run succeeded,
+///   OR when all failures have been acknowledged.
+/// - Shows 🔴 when at least one workflow has an unacknowledged failure.
 /// - Shows ⚙️ when the app is not yet configured.
 /// - Shows ⚠️ when a network / API error occurred.
 /// - Refreshes every 60 seconds automatically.
@@ -11,6 +12,11 @@ class StatusBarController {
     private let statusItem: NSStatusItem
     private let apiClient: GitHubAPIClient
     private var refreshTimer: Timer?
+
+    /// Last raw statuses from the API, used to re-render without a network fetch.
+    private var lastFetchedStatuses: [WorkflowStatus] = []
+    /// Previous run status per workflow ID, used to detect newly-red builds.
+    private var previousRunStatuses: [Int: WorkflowRunStatus] = [:]
 
     init() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
@@ -73,29 +79,76 @@ class StatusBarController {
     // MARK: - Menu builders
 
     private func renderWorkflowMenu(_ statuses: [WorkflowStatus]) {
-        let hasFailure = statuses.contains { $0.runStatus == .failure }
-        let allSuccess = !statuses.isEmpty && statuses.allSatisfy { $0.runStatus == .success || $0.runStatus == .unknown }
+        lastFetchedStatuses = statuses
 
-        statusItem.button?.title = hasFailure ? "🔴" : (allSuccess ? "🟢" : "⚪")
+        let prefs = UserPreferences.shared
+        var acknowledgedIDs = prefs.acknowledgedWorkflowIDs
+
+        // Auto-reset acknowledgment for workflows that newly became red.
+        for status in statuses {
+            if status.runStatus == .failure {
+                if previousRunStatuses[status.id] != .failure {
+                    acknowledgedIDs.remove(status.id)
+                }
+            } else {
+                acknowledgedIDs.remove(status.id)
+            }
+        }
+        prefs.acknowledgedWorkflowIDs = acknowledgedIDs
+
+        for status in statuses {
+            previousRunStatuses[status.id] = status.runStatus
+        }
+
+        let hasUnacknowledgedFailure = statuses.contains {
+            $0.runStatus == .failure && !acknowledgedIDs.contains($0.id)
+        }
+        statusItem.button?.title = hasUnacknowledgedFailure ? "🔴" : (statuses.isEmpty ? "⚪" : "🟢")
 
         let menu = buildBaseMenu()
 
         if statuses.isEmpty {
             menu.insertItem(NSMenuItem(title: "No workflows found", action: nil, keyEquivalent: ""), at: 0)
         } else {
-            var index = 0
-            for status in statuses {
-                let title = "\(status.runStatus.menuIndicator)  \(status.name)"
-                let item  = NSMenuItem(title: title, action: #selector(openWorkflow(_:)), keyEquivalent: "")
-                item.target = self
-                item.representedObject = status
+            for (index, status) in statuses.enumerated() {
+                let item = buildWorkflowMenuItem(status, acknowledgedIDs: acknowledgedIDs)
                 menu.insertItem(item, at: index)
-                index += 1
             }
         }
 
         menu.insertItem(NSMenuItem.separator(), at: menu.items.count - 3)
         statusItem.menu = menu
+    }
+
+    private func buildWorkflowMenuItem(_ status: WorkflowStatus, acknowledgedIDs: Set<Int>) -> NSMenuItem {
+        let title = "\(status.runStatus.menuIndicator)  \(status.name)"
+
+        guard status.runStatus == .failure else {
+            let item = NSMenuItem(title: title, action: #selector(openWorkflow(_:)), keyEquivalent: "")
+            item.target = self
+            item.representedObject = status
+            return item
+        }
+
+        // Failing workflow: submenu with Open + Acknowledge toggle.
+        let item = NSMenuItem(title: title, action: nil, keyEquivalent: "")
+        let submenu = NSMenu()
+
+        let openItem = NSMenuItem(title: "Open in Browser", action: #selector(openWorkflow(_:)), keyEquivalent: "")
+        openItem.target = self
+        openItem.representedObject = status
+        submenu.addItem(openItem)
+
+        submenu.addItem(NSMenuItem.separator())
+
+        let ackItem = NSMenuItem(title: "Acknowledged", action: #selector(toggleAcknowledgement(_:)), keyEquivalent: "")
+        ackItem.target = self
+        ackItem.representedObject = status
+        ackItem.state = acknowledgedIDs.contains(status.id) ? .on : .off
+        submenu.addItem(ackItem)
+
+        item.submenu = submenu
+        return item
     }
 
     private func renderNotConfiguredMenu() {
@@ -148,6 +201,19 @@ class StatusBarController {
         guard let status = sender.representedObject as? WorkflowStatus,
               let url = status.htmlURL else { return }
         NSWorkspace.shared.open(url)
+    }
+
+    @objc private func toggleAcknowledgement(_ sender: NSMenuItem) {
+        guard let status = sender.representedObject as? WorkflowStatus else { return }
+        let prefs = UserPreferences.shared
+        var ids = prefs.acknowledgedWorkflowIDs
+        if ids.contains(status.id) {
+            ids.remove(status.id)
+        } else {
+            ids.insert(status.id)
+        }
+        prefs.acknowledgedWorkflowIDs = ids
+        renderWorkflowMenu(lastFetchedStatuses)
     }
 
     @objc private func openSettings() {

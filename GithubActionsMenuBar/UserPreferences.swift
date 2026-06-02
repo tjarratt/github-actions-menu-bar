@@ -9,8 +9,9 @@ final class UserPreferences {
     private let defaults = UserDefaults.standard
 
     private enum Keys {
-        static let repoOwner = "repoOwner"
-        static let repoName  = "repoName"
+        static let repoOwner              = "repoOwner"
+        static let repoName               = "repoName"
+        static let acknowledgedWorkflowIDs = "acknowledgedWorkflowIDs"
     }
 
     private let keychainService = "com.github-actions-menu-bar"
@@ -32,6 +33,17 @@ final class UserPreferences {
     var githubToken: String {
         get { loadTokenFromKeychain() ?? "" }
         set { saveTokenToKeychain(newValue) }
+    }
+
+    /// Workflow IDs the user has acknowledged as persistently failing.
+    var acknowledgedWorkflowIDs: Set<Int> {
+        get {
+            let array = defaults.array(forKey: Keys.acknowledgedWorkflowIDs) as? [Int] ?? []
+            return Set(array)
+        }
+        set {
+            defaults.set(Array(newValue), forKey: Keys.acknowledgedWorkflowIDs)
+        }
     }
 
     /// Returns `true` when all three configuration values are non-empty.
