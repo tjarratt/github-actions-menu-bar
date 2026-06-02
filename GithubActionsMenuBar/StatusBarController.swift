@@ -123,7 +123,7 @@ class StatusBarController {
     private func buildWorkflowMenuItem(_ status: WorkflowStatus, acknowledgedIDs: Set<Int>) -> NSMenuItem {
         let isAcknowledged = status.runStatus == .failure && acknowledgedIDs.contains(status.id)
         let acknowledgementIndicator = isAcknowledged ? " 👀" : ""
-        let title = "\(status.runStatus.menuIndicator)  \(status.name)\(acknowledgementIndicator)"
+        let title = "\(status.runStatus.menuIndicator)  \(acknowledgementIndicator)\(status.name)"
 
         guard status.runStatus == .failure else {
             let item = NSMenuItem(title: title, action: #selector(openWorkflow(_:)), keyEquivalent: "")
