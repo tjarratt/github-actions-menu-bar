@@ -81,15 +81,15 @@
 		AA000000000000000000003A /* GithubActionsMenuBar */ = {
 			isa = PBXGroup;
 			children = (
-				DF15F5322FD00F84005C747A /* WorkflowStatusStore.swift */,
-				AA0000000000000000000101 /* main.swift */,
 				AA0000000000000000000102 /* AppDelegate.swift */,
-				AA0000000000000000000103 /* StatusBarController.swift */,
 				AA0000000000000000000104 /* GitHubAPIClient.swift */,
-				AA0000000000000000000105 /* WorkflowModels.swift */,
-				AA0000000000000000000106 /* SettingsWindowController.swift */,
-				AA0000000000000000000107 /* UserPreferences.swift */,
 				AA0000000000000000000108 /* Info.plist */,
+				AA0000000000000000000101 /* main.swift */,
+				AA0000000000000000000106 /* SettingsWindowController.swift */,
+				AA0000000000000000000103 /* StatusBarController.swift */,
+				AA0000000000000000000107 /* UserPreferences.swift */,
+				AA0000000000000000000105 /* WorkflowModels.swift */,
+				DF15F5322FD00F84005C747A /* WorkflowStatusStore.swift */,
 			);
 			path = GithubActionsMenuBar;
 			sourceTree = "<group>";
