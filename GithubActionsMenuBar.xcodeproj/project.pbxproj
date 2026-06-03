@@ -19,9 +19,21 @@
 		BB0000000000000000000003 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000007 /* MockURLProtocol.swift */; };
 		DD0000000000000000000005 /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = DD0000000000000000000003 /* Quick */; };
 		DD0000000000000000000006 /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = DD0000000000000000000004 /* Nimble */; };
+		DF15F5332FD00F84005C747A /* WorkflowStatusStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF15F5322FD00F84005C747A /* WorkflowStatusStore.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		BB000000000000000000000D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA000000000000000000001A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA000000000000000000005A;
+			remoteInfo = GithubActionsMenuBar;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		AA000000000000000000006A /* GithubActionsMenuBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubActionsMenuBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA0000000000000000000101 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		AA0000000000000000000102 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA0000000000000000000103 /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
@@ -30,11 +42,11 @@
 		AA0000000000000000000106 /* SettingsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindowController.swift; sourceTree = "<group>"; };
 		AA0000000000000000000107 /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		AA0000000000000000000108 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AA000000000000000000006A /* GithubActionsMenuBar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithubActionsMenuBar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB0000000000000000000004 /* GithubActionsMenuBarTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GithubActionsMenuBarTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB0000000000000000000005 /* WorkflowModelsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowModelsSpec.swift; sourceTree = "<group>"; };
 		BB0000000000000000000006 /* GitHubAPIClientSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubAPIClientSpec.swift; sourceTree = "<group>"; };
 		BB0000000000000000000007 /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
+		DF15F5322FD00F84005C747A /* WorkflowStatusStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkflowStatusStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,18 +69,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AA000000000000000000002A /* GithubActionsMenuBar */ = {
+		AA000000000000000000002A = {
 			isa = PBXGroup;
 			children = (
-				AA000000000000000000003A /* Sources */,
+				AA000000000000000000003A /* GithubActionsMenuBar */,
 				BB0000000000000000000008 /* GithubActionsMenuBarTests */,
 				AA000000000000000000004A /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		AA000000000000000000003A /* Sources */ = {
+		AA000000000000000000003A /* GithubActionsMenuBar */ = {
 			isa = PBXGroup;
 			children = (
+				DF15F5322FD00F84005C747A /* WorkflowStatusStore.swift */,
 				AA0000000000000000000101 /* main.swift */,
 				AA0000000000000000000102 /* AppDelegate.swift */,
 				AA0000000000000000000103 /* StatusBarController.swift */,
@@ -78,7 +91,6 @@
 				AA0000000000000000000107 /* UserPreferences.swift */,
 				AA0000000000000000000108 /* Info.plist */,
 			);
-			name = GithubActionsMenuBar;
 			path = GithubActionsMenuBar;
 			sourceTree = "<group>";
 		};
@@ -145,24 +157,6 @@
 		};
 /* End PBXNativeTarget section */
 
-/* Begin PBXContainerItemProxy section */
-		BB000000000000000000000D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AA000000000000000000001A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = AA000000000000000000005A;
-			remoteInfo = GithubActionsMenuBar;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXTargetDependency section */
-		BB000000000000000000000E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = AA000000000000000000005A /* GithubActionsMenuBar */;
-			targetProxy = BB000000000000000000000D /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXProject section */
 		AA000000000000000000001A /* Project object */ = {
 			isa = PBXProject;
@@ -185,13 +179,13 @@
 				Base,
 			);
 			mainGroup = AA000000000000000000002A;
-			productRefGroup = AA000000000000000000004A /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
 			packageReferences = (
 				DD0000000000000000000001 /* XCRemoteSwiftPackageReference "Quick" */,
 				DD0000000000000000000002 /* XCRemoteSwiftPackageReference "Nimble" */,
 			);
+			productRefGroup = AA000000000000000000004A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
 			targets = (
 				AA000000000000000000005A /* GithubActionsMenuBar */,
 				BB0000000000000000000009 /* GithubActionsMenuBarTests */,
@@ -221,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF15F5332FD00F84005C747A /* WorkflowStatusStore.swift in Sources */,
 				AA0000000000000000000201 /* main.swift in Sources */,
 				AA0000000000000000000202 /* AppDelegate.swift in Sources */,
 				AA0000000000000000000203 /* StatusBarController.swift in Sources */,
@@ -242,6 +237,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BB000000000000000000000E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AA000000000000000000005A /* GithubActionsMenuBar */;
+			targetProxy = BB000000000000000000000D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		AA00000000000000000000AC /* Debug */ = {
@@ -307,7 +310,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "GithubActionsMenuBar/Info.plist";
+				INFOPLIST_FILE = GithubActionsMenuBar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -323,7 +326,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "GithubActionsMenuBar/Info.plist";
+				INFOPLIST_FILE = GithubActionsMenuBar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -435,7 +438,6 @@
 			productName = Nimble;
 		};
 /* End XCSwiftPackageProductDependency section */
-
 	};
 	rootObject = AA000000000000000000001A /* Project object */;
 }
