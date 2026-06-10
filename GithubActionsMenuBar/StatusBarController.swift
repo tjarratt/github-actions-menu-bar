@@ -119,7 +119,7 @@ class StatusBarController {
 
         submenu.addItem(NSMenuItem.separator())
 
-        let ackItem = NSMenuItem(title: "Acknowledged", action: #selector(toggleAcknowledgement(_:)), keyEquivalent: "")
+        let ackItem = NSMenuItem(title: "Acknowledge", action: #selector(toggleAcknowledgement(_:)), keyEquivalent: "")
         ackItem.target = self
         ackItem.representedObject = viewModel
         ackItem.state = viewModel.isAcknowledged ? .on : .off
